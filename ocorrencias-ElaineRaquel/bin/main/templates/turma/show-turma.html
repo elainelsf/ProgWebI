@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Detalhes da Turma</title>
+	<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+</head>
+<body>
+	<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+		<ul class="nav nav-tabs" id="myTab" role="tablist">
+  			<li class="nav-item">
+    			<a th:href="@{/}" class="nav-link disabled" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">Home</a>
+  			</li>
+  			<li class="nav-item">
+    			<a th:href="@{/turma}" class="nav-link active" id="turmas-tab" data-toggle="tab" href="#perfil" role="tab" aria-controls="turma" aria-selected="true">Turmas</a>
+  			</li>
+  			<li class="nav-item">
+    			<a th:href="@{/aluno}" class="nav-link" id="alunos-tab" data-toggle="tab" href="#perfil" role="tab" aria-controls="aluno" aria-selected="false">Alunos</a>
+  			</li>
+  			<li class="nav-item">
+    			<a th:href="@{/ocorrencia}" class="nav-link" id="ocorrencias-tab" data-toggle="tab" role="tab" aria-controls="ocorrencia" aria-selected="false">Ocorrências</a>
+  			</li>
+		</ul>
+	</nav>
+	<br/>
+	<div class="container my-5">
+		<div class="card">
+            <div class="card-header bg-white">
+    		<h3 class="text-primary">Detalhes da Turma <span th:text="${turma.codigo}"></span></h3>
+  		</div>
+            <div class="card-body">
+                <div class="col-md-8">
+	            Código: <span th:text="${turma.codigo}"></span><br/>
+                Nome: <span th:text="${turma.nome}"></span><br/>
+                Ano: <span th:text="${turma.ano}"></span><br/>
+                Período: <span th:text="${turma.periodo}"></span><br/>
+                
+                Lista de alunos: (<span th:text="${#lists.size(turma.alunos)}"></span>):
+                
+                <p th:each="aluno : ${turma.alunos}" >
+                	<span th:text="${aluno.matricula}"></span> - <span th:text="${aluno.nome}"></span><br/>
+                </p> 
+            </div>
+        </div>
+        <div class="card-footer bg-light"><a th:href="@{/turma}" class="btn btn-primary">Voltar</a></div>
+    </div></div>
+</body>
+</html>

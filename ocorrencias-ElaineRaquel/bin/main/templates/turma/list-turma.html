@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Lista de Turmas</title>
+<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+</head>
+<body>
+	<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+		<ul class="nav nav-tabs" id="myTab" role="tablist">
+  			<li class="nav-item">
+    			<a th:href="@{/}" class="nav-link disabled" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">Home</a>
+  			</li>
+  			<li class="nav-item">
+    			<a th:href="@{/turma}" class="nav-link active" id="turmas-tab" data-toggle="tab" href="#perfil" role="tab" aria-controls="turma" aria-selected="true">Turmas</a>
+  			</li>
+  			<li class="nav-item">
+    			<a th:href="@{/aluno}" class="nav-link" id="alunos-tab" data-toggle="tab" href="#perfil" role="tab" aria-controls="aluno" aria-selected="false">Alunos</a>
+  			</li>
+  			<li class="nav-item">
+    			<a th:href="@{/ocorrencia}" class="nav-link" id="ocorrencias-tab" data-toggle="tab" role="tab" aria-controls="ocorrencia" aria-selected="false">Ocorrências</a>
+  			</li>
+		</ul>
+	</nav>
+	<br/>
+	<div class="card">
+  		<div class="card-header bg-white">
+    		<h3 class="text-primary">Listagem de Turmas</h3>
+  		</div>
+		<table class="table table-hover">
+			<thead class="thead-light">
+				<tr>
+					<th>Código</th>
+					<th>Nome</th>
+					<th>Ano</th>
+					<th>Período</th>
+					<th>Ações</th>
+				</tr>
+			</thead>
+			<tr th:each ="turma : ${turmas}" th:object="${turma}" class="col-md-2">
+				<td th:text=${turma.codigo}>onions</td>
+				<td th:text=${turma.nome}>onions</td>
+				<td th:text=${turma.ano}>2.4</td>
+				<td th:text=${turma.periodo}>2.41</td>
+				<td>
+					<a th:href="@{/turma/mostrar/{id}(id=${turma.codigo})}" class="btn btn-primary">Mostrar</a>
+					<a th:href="@{/turma/edit/{id}(id=${turma.codigo})}" class="btn btn-primary">Editar</a>
+					<a th:href="@{/turma/remove/{id}(id=${turma.codigo})}" class="btn btn-primary">Excluir</a>
+				</td>
+			</tr>
+		</table>
+		<div class="card-footer bg-light"><a th:href="@{/turma/novo}" class="btn btn-primary">Nova Turma</a></div>
+	</div>
+</body>
+</html>

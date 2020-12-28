@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Lista de Alunos</title>
+<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+</head>
+<body>
+	<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+		<ul class="nav nav-tabs" id="myTab" role="tablist">
+  			<li class="nav-item">
+    			<a th:href="@{/}" class="nav-link disabled" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">Home</a>
+  			</li>
+  			<li class="nav-item">
+    			<a th:href="@{/turma}" class="nav-link" id="turmas-tab" data-toggle="tab" href="#perfil" role="tab" aria-controls="turma" aria-selected="true">Turmas</a>
+  			</li>
+  			<li class="nav-item">
+    			<a th:href="@{/aluno}" class="nav-link active" id="alunos-tab" data-toggle="tab" href="#perfil" role="tab" aria-controls="aluno" aria-selected="false">Alunos</a>
+  			</li>
+  			<li class="nav-item">
+    			<a th:href="@{/ocorrencia}" class="nav-link" id="ocorrencias-tab" data-toggle="tab" role="tab" aria-controls="ocorrencia" aria-selected="false">Ocorrências</a>
+  			</li>
+		</ul>
+	</nav>
+	<br/>
+	<div class="card">
+  		<div class="card-header bg-white">
+    		<h3 class="text-primary">Listagem de Alunos</h3>
+  		</div>
+		<table class="table table-hover">
+			<thead class="thead-light">
+				<tr>
+					<th>Matrícula</th>
+					<th>Nome</th>
+					<th>Ano Nasc.</th>
+					<th>Telefone</th>
+					<th>E-mail</th>
+					<th>Turma</th>
+					<th>Ações</th>
+				</tr>
+			</thead>
+			<tr th:each ="aluno : ${alunos}" th:object="${aluno}" class="col-md-2">
+				<td th:text=${aluno.matricula}>onions</td>
+				<td th:text=${aluno.nome}>onions</td>
+				<td th:text=${aluno.anoNascimento}>2.4</td>
+				<td th:text=${aluno.telefone}>2.41</td>
+				<td th:text=${aluno.email}>2.41</td>
+				<td th:text=${aluno.turma}>2.41</td>
+				<td>
+					<a th:href="@{/aluno/mostrar/{id}(id=${aluno.matricula})}" class="btn btn-primary">Mostrar</a>
+					<a th:href="@{/aluno/edit/{id}(id=${aluno.matricula})}" class="btn btn-primary">Editar</a>
+					<a th:href="@{/aluno/remove/{id}(id=${aluno.matricula})}" class="btn btn-primary">Excluir</a>
+				</td>
+			</tr>
+		</table>
+		<div class="card-footer bg-light"><a th:href="@{/aluno/novo}" class="btn btn-primary">Novo Aluno</a></div>
+	</div>
+</body>
+</html>

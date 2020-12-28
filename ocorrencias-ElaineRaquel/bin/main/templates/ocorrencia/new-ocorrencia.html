@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Nome da Pagina</title>
+	<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+</head>
+<body>
+	<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+		<ul class="nav nav-tabs" id="myTab" role="tablist">
+  			<li class="nav-item">
+    			<a th:href="@{/, /ocorrencia}" class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">Home</a>
+  			</li>
+  			<li class="nav-item">
+    			<a th:href="@{/turma}" class="nav-link" id="turmas-tab" data-toggle="tab" href="#perfil" role="tab" aria-controls="turma" aria-selected="true">Turmas</a>
+  			</li>
+  			<li class="nav-item">
+    			<a th:href="@{/aluno}" class="nav-link active" id="alunos-tab" data-toggle="tab" href="#perfil" role="tab" aria-controls="aluno" aria-selected="false">Alunos</a>
+  			</li>
+  			<li class="nav-item">
+    			<a th:href="@{/ocorrencia}" class="nav-link" id="ocorrencias-tab" data-toggle="tab" role="tab" aria-controls="ocorrencia" aria-selected="false">Ocorrências</a>
+  			</li>
+		</ul>
+	</nav>
+	<br/>
+	<div class="container my-5">
+		<h3 class="text-primary">Nova Ocorrencia</h3>
+		<div class="card">
+            <div class="card-body">
+                <div class="col-md-8">
+					<form th:action="@{/ocorrencia}" method="POST" th:object="${ocorrencia}">
+						<div class="row">
+							<div class="form-group col-md-6">
+								<label for="titulo">Titulo</label>
+								<input type="text" id="titulo" name="titulo" th:field="*{titulo}" placeholder="nome do aluno" class="form-control" />
+							</div>
+							<div class="form-group col-md-6">
+								<label for="nome">Nome</label>
+								<input type="text" id="nome" name="nome" th:field="*{nome}" placeholder="nome" class="form-control" /> <br/>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="ano">Ano Nascimento</label>
+								<input type="text" id="ano" name="anoNascimento" th:field="*{anoNascimento}" placeholder="1932" class="form-control" /> <br/>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="fone">Telefone</label>
+								<input type="text" id="fone" name="telefone" th:field="*{telefone}" placeholder="9999-9999" class="form-control" /> <br/>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="email">E-mail</label>
+								<input type="text" id="email" name="email" th:field="*{email}" placeholder="email@dominio.com" class="form-control" /> <br/>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="turma">Turma</label>
+								<select id="turma" class="form-control" name="codigo">
+									<option th:each="turma : ${turmas}" th:text="${turma.codigo}">Turma</option>
+								</select>
+							</div>
+							<div class="form-group col-md-8">
+                                <input type="submit" class="btn btn-primary" value="Adicionar Aluno">
+                            </div>
+						</div>
+					</form>
+				</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

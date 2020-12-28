@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Editar Turma</title>
+	<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+</head>
+<body>
+	<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+		<ul class="nav nav-tabs" id="myTab" role="tablist">
+  			<li class="nav-item">
+    			<a th:href="@{/}" class="nav-link disabled" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">Home</a>
+  			</li>
+  			<li class="nav-item">
+    			<a th:href="@{/turma}" class="nav-link active" id="turmas-tab" data-toggle="tab" href="#perfil" role="tab" aria-controls="turma" aria-selected="true">Turmas</a>
+  			</li>
+  			<li class="nav-item">
+    			<a th:href="@{/aluno}" class="nav-link" id="alunos-tab" data-toggle="tab" href="#perfil" role="tab" aria-controls="aluno" aria-selected="false">Alunos</a>
+  			</li>
+  			<li class="nav-item">
+    			<a th:href="@{/ocorrencia}" class="nav-link" id="ocorrencias-tab" data-toggle="tab" role="tab" aria-controls="ocorrencia" aria-selected="false">Ocorrências</a>
+  			</li>
+		</ul>
+	</nav>
+	<br/>
+	<div class="container my-5">
+		<h3 class="text-primary">Editar Turma</h3>
+		<div class="card">
+            <div class="card-body">
+                <div class="col-md-8">
+					<form th:action="@{/turma}" method="POST" th:object="${turma}">
+						<div class="row">
+							<div class="form-group col-md-6">
+								<label for="codigo">Código</label>
+								<input type="text" id="codigo" name="codigo" th:field="*{codigo}" placeholder="NOMEANOPERIODO" class="form-control" />
+							</div>
+							<div class="form-group col-md-6">
+								<label for="nome">Nome</label>
+								<input type="text" id="nome" name="nome" th:field="*{nome}" placeholder="nome" class="form-control" /> <br/>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="ano">Ano</label>
+								<input type="text" id="ano" name="ano" th:field="*{ano}" placeholder="1932" class="form-control" /> <br/>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="periodo">Periodo</label>
+								<input type="text" id="periodo" name="periodo" th:field="*{periodo}" placeholder="1 ou 2" class="form-control" /> <br/>
+							</div>
+							<div class="form-group col-md-8">
+                                <input type="submit" class="btn btn-primary" value="Atualizar">
+                            </div>
+						</div>
+					</form>
+				</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

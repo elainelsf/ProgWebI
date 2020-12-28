@@ -1,0 +1,96 @@
+
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Lista de Ocorrências</title>
+<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+</head>
+<body>
+	<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+		<ul class="nav nav-tabs" id="myTab" role="tablist">
+  			<li class="nav-item">
+    			<a th:href="@{/, /ocorrencia}" class="nav-link disabled" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">Home</a>
+  			</li>
+  			<li class="nav-item">
+    			<a th:href="@{/turma}" class="nav-link active" id="turmas-tab" data-toggle="tab" href="#perfil" role="tab" aria-controls="turma" aria-selected="true">Turmas</a>
+  			</li>
+  			<li class="nav-item">
+    			<a th:href="@{/aluno}" class="nav-link" id="alunos-tab" data-toggle="tab" href="#perfil" role="tab" aria-controls="aluno" aria-selected="false">Alunos</a>
+  			</li>
+  			<li class="nav-item">
+    			<a th:href="@{/ocorrencia}" class="nav-link" id="ocorrencias-tab" data-toggle="tab" role="tab" aria-controls="ocorrencia" aria-selected="false">Ocorrências</a>
+  			</li>
+		</ul>
+	</nav>
+	<br/>
+	<div class="card">
+  		<div class="card-header bg-white">
+    		<h3 class="text-primary">Listagem de Ocorrências (Total: <th:block th:text="${#lists.size(ocorrencias)}">100</th:block>)</h3>
+  		</div>
+		<table class="table table-hover">
+			<thead class="thead-light">
+				<tr>
+					<th>Item</th>
+					<th>Título</th>
+					<th>Aluno</th>
+					<th>Data de Inclusão</th>
+					<th>Status</th>
+					<th>Ações</th>
+				</tr>
+			</thead>
+			<tr th:each ="ocorrencia, stat : ${ocorrencias}" th:object="${ocorrencia}" class="col-md-2">
+				<!-- como criar variavel para numerar os itens?  -->
+				<td th:text="${stat.index + 1}">1</td>
+				<td th:text=${ocorrencia.titulo}>onions</td>
+				<td th:text="${ocorrencia.aluno.nome}">2.4</td>
+				
+				<td th:text="${#dates.format(ocorrencia.dataHora, 'dd/MM/yyyy')}">Start date</td>
+				<td th:text=${ocorrencia.status}>2.41</td>
+				<td>
+					<a th:href="@{/ocorrencia/mostrar/{id}(id=${ocorrencia.id})}" class="btn btn-primary">Mostrar</a>
+					<a th:href="@{/ocorrencia/edit/{id}(id=${ocorrencia.id})}" class="btn btn-primary">Editar</a>
+					<a th:href="@{/ocorrencia/remove/{id}(id=${ocorrencia.id})}" class="btn btn-primary">Excluir</a>
+				</td>
+			</tr>
+		</table>
+		
+		
+		<!-- 
+		<div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped" id="display">
+                            <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Files</th>
+                                <th>Tanggal</th>
+                                <th>Oleh</th>
+                                <th style="text-align:right;">Aksi</th>
+                            </tr>
+                            </thead>
+                            <tr th:each="f, itrStat : ${filesList}" th:class="${itrStat.even}? 'even_css_class':'odd_css_class'" >
+                            <td th:text="${itrStat.index + 1}">nomor urut</td>
+                            <td th:text="${f.judul}">file_judul</td>
+                            <td th:text="${#temporals.format(f.createdOn, 'dd/MM/YYYY')}">tanggal</td>
+                            <td th:text="${f.createdBy}">file_oleh</td>
+                            <td style="text-align:right;"><a class="btn btn-info"
+                                                             th:href="@{/download/get_file/} + ${f.id}">Download</a>
+                            </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+        -->
+</div>
+		
+		
+		
+		<div class="card-footer bg-light"><a th:href="@{/turma/novo}" class="btn btn-primary">Nova Ocorrência</a></div>
+	</div>
+</body>
+</html>

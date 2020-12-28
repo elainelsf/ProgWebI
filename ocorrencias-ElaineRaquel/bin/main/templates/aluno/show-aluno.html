@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Detalhes do Aluno</title>
+	<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+</head>
+<body>
+	<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+		<ul class="nav nav-tabs" id="myTab" role="tablist">
+  			<li class="nav-item">
+    			<a th:href="@{/}" class="nav-link disabled" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">Home</a>
+  			</li>
+  			<li class="nav-item">
+    			<a th:href="@{/turma}" class="nav-link" id="turmas-tab" data-toggle="tab" href="#perfil" role="tab" aria-controls="turma" aria-selected="true">Turmas</a>
+  			</li>
+  			<li class="nav-item">
+    			<a th:href="@{/aluno}" class="nav-link active" id="alunos-tab" data-toggle="tab" href="#perfil" role="tab" aria-controls="aluno" aria-selected="false">Alunos</a>
+  			</li>
+  			<li class="nav-item">
+    			<a th:href="@{/ocorrencia}" class="nav-link" id="ocorrencias-tab" data-toggle="tab" role="tab" aria-controls="ocorrencia" aria-selected="false">Ocorrências</a>
+  			</li>
+		</ul>
+	</nav>
+	<br/>
+	<div class="container my-5">
+		<h3 class="text-primary"></h3>
+		<div class="card">
+			<div class="card-header bg-white">
+    			<h3 class="text-primary">Detalhes do Aluno <span th:text="${aluno.matricula}"></span></h3>
+  			</div>
+            <div class="card-body">
+                Matrícula: <span th:text="${aluno.matricula}"></span><br/>
+                Nome: <span th:text="${aluno.nome}"></span><br/>
+                Ano de Nascimento: <span th:text="${aluno.anoNascimento}"></span><br/>
+                Telefone: <span th:text="${aluno.telefone}"></span><br/>
+                E-mail: <span th:text="${aluno.email}"></span><br/>
+                Turma: <span th:text="${aluno.turma}"></span><br/>
+                
+                Lista de ocorrências: (<span th:text="${#lists.size(aluno.ocorrencias)}"></span>):
+                <p th:each="ocorrencia : ${aluno.ocorrencias}" >
+                	<span th:text="${ocorrencia.titulo                                                         }"></span>:
+                	<span th:text="${ocorrencia.descricao}"></span> - 
+                	Status: <span th:text="${ocorrencia.status}"></span><br/>
+                </p> 
+            </div>
+            <div class="card-footer bg-light"><a th:href="@{/aluno}" class="btn btn-primary">Voltar</a></div>
+        </div>
+    </div>
+</body>
+</html>
