@@ -2,3 +2,13 @@
 th:disabled="${menu.id == null}"
 
 ------------------------------------------------------------------------------
+
+# Selecionar item dropbox
+th:selected="${aluno.turma.codigo}"
+
+<label for="turma">Turma</label>
+<select th:if="${aluno.turma}" id="turma" class="for-control" name="codigo">
+  <option th:each="turma: ${turmas}" th:selected="${aluno.turma.codigo}" th:text="${turma.codigo}">Turma</option>
+</select><br/>
+
+------------------------------------------------------------------------------
